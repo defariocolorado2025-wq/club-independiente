@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Club Independiente</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#b30000,#ff1a1a);
+    color:white;
+}
+
+.screen{
+    display:none;
+    padding:20px;
+}
+
+.active{
+    display:block;
+}
+
+.login-container{
+    background:white;
+    color:black;
+    max-width:350px;
+    margin:80px auto;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+}
+
+.logo{
+    width:120px;
+    margin-bottom:20px;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border:none;
+    border-radius:8px;
+    background:#b30000;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.menu button{
+    margin:10px 0;
+}
+
+.card{
+    background:white;
+    color:black;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="login" class="screen active">
+    <div class="login-container">
+        <img src="logo.png" class="logo">
+        <h2>Club Independiente</h2>
+        <input type="email" id="email" placeholder="Correo electrónico">
+        <input type="password" id="password" placeholder="Contraseña">
+        <button onclick="ingresar()">Ingresar</button>
+    </div>
+</div>
+
+<!-- PANEL PRINCIPAL -->
+<div id="panel" class="screen">
+    <h2>Panel Principal 🔴</h2>
+    <div class="menu">
+        <button onclick="mostrar('rutinas')">Rutinas</button>
+        <button onclick="mostrar('jugadoras')">Jugadoras</button>
+        <button onclick="cerrarSesion()">Cerrar sesión</button>
+    </div>
+</div>
+
+<!-- RUTINAS -->
+<div id="rutinas" class="screen">
+    <h2>Rutinas de Entrenamiento</h2>
+
+    <div class="card">
+        <strong>Elongación General</strong>
+        <p>15 minutos de movilidad y estiramientos dinámicos.</p>
+    </div>
+
+    <div class="card">
+        <strong>Trabajo de Velocidad</strong>
+        <p>Series cortas de 20 metros con recuperación activa.</p>
+    </div>
+
+    <button onclick="volverPanel()">Volver</button>
+</div>
+
+<!-- JUGADORAS -->
+<div id="jugadoras" class="screen">
+    <h2>Plantel</h2>
+
+    <div class="card">María López - Delantera</div>
+    <div class="card">Sofía Gómez - Defensora</div>
+    <div class="card">Lucía Pérez - Arquera</div>
+
+    <button onclick="volverPanel()">Volver</button>
+</div>
+
+<script>
+function ingresar(){
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+
+    if(email !== "" && password !== ""){
+        cambiarPantalla("panel");
+    } else {
+        alert("Complete los datos");
+    }
+}
+
+function cerrarSesion(){
+    cambiarPantalla("login");
+}
+
+function mostrar(seccion){
+    cambiarPantalla(seccion);
+}
+
+function volverPanel(){
+    cambiarPantalla("panel");
+}
+
+function cambiarPantalla(id){
+    let pantallas = document.querySelectorAll(".screen");
+    pantallas.forEach(p => p.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+}
+</script>
+
+</body>
+</html>
